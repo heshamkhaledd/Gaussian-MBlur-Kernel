@@ -5,19 +5,23 @@
 
 % Reading the image and storing its RGB Colors to be able to 
 % be exported at last as an RGB Color
-image = imread ('car.jpg');
+prompt = {'Enter Filename (with extenion)','Enter Intensity:','Enter Angle (Multiples of 45°):'};
+dlgtitle = 'Motion Blur Inputs';
+dims = [1 50];
+definput = {'','',''};
+answer = inputdlg(prompt,dlgtitle,dims,definput);
+image = imread(char(answer(1)));
 red = image(:,:,1);
 green = image(:,:,2);
 blue = image(:,:,3);
 
+answer = str2double(answer);
 % Converting it into the grey scale to be able to process it%
 image=rgb2gray(image);
 
 % Taking Filter Direction and Intensity from the user
-intensity = input('Enter Filter Intensity: ', 's');
-intensity = ceil(str2double(intensity));
-angle = input('Enter Filter Angle: ', 's');
-angle = str2double(angle);
+intensity = answer(2);
+angle = answer(3);
 
            % Creating the Gaussian Kernel with the required inputs %
            
@@ -161,3 +165,4 @@ green = conv2(double(filter),double(green));
 blue = conv2(double(filter),double(blue)); 
 output = cat(3,red,green,blue);
 imwrite(uint8(output),'out.png');
+msgbox({'Operation Completed,';'Check the project directory.'});
