@@ -71,7 +71,7 @@ elseif (angle == 45 || angle == 225 || angle == -135 || angle == -315)
         for i = 1:kernel_size
             if (i == 1)
                 filter(i,j) = 1/(intensity*normalize_weight);
-                filter(i+1,j) = 1/(intensity*std_deviation*weight);
+                filter(i+1,j) = 1/(intensity*std_deviation*normalize_weight);
             
             elseif (i == kernel_size)
                 filter(i,j)=1/(intensity*normalize_weight);
@@ -91,14 +91,14 @@ elseif (angle == 45 || angle == 225 || angle == -135 || angle == -315)
         for i= 1:kernel_size
             if (i == 1)
                 filter(i,j) = 0;
-                filter(i+1,j) = 1/(intensity*std_deviation*weight);
+                filter(i+1,j) = 1/(intensity*std_deviation*normalize_weight);
             elseif (i == kernel_size)
                 filter(i,j) = 0;
-                filter(i-1,j) = 1/(intensity*std_deviation*weight);
+                filter(i-1,j) = 1/(intensity*std_deviation*normalize_weight);
             else
                 filter(i,j) = 1/intensity;
-                filter(i+1,j) = 1/(intensity*std_deviation*normalize_weight);
-                filter(i-1,j) = 1/(intensity*std_deviation*normalize_weight);
+                filter(i+1,j) = 1/(intensity*std_deviation);
+                filter(i-1,j) = 1/(intensity*std_deviation);
             end
             j = j - 1;
         end
@@ -127,8 +127,8 @@ elseif (angle == 135 || angle == -45 || angle == 315 || angle == -225)
                 filter(i-1,j)= 1/(intensity*std_deviation*normalize_weight);
             else
                 filter(i,j) = 1/intensity;
-                filter(i+1,j) = 1/(intensity*std_deviation*normalize_weight);
-                filter(i-1,j) = 1/(intensity*std_deviation*normalize_weight);
+                filter(i+1,j) = 1/(intensity*std_deviation);
+                filter(i-1,j) = 1/(intensity*std_deviation);
             end
             j = j + 1;
         end
@@ -140,14 +140,14 @@ elseif (angle == 135 || angle == -45 || angle == 315 || angle == -225)
         for i= 1:kernel_size
             if (i == 1)
                 filter(i,j) = 0;
-                filter(i+1,j) = 1/(intensity*std_deviation*weight);
+                filter(i+1,j) = 1/(intensity*std_deviation*normalize_weight);
             elseif (i == kernel_size)
                 filter(i,j) = 0;
-                filter(i-1,j) = 1/(intensity*std_deviation*weight);
+                filter(i-1,j) = 1/(intensity*std_deviation*normalize_weight);
             else
                 filter(i,j) = 1/intensity;
-                filter(i+1,j) = 1/(intensity*std_deviation*normalize_weight);
-                filter(i-1,j) = 1/(intensity*std_deviation*normalize_weight);
+                filter(i+1,j) = 1/(intensity*std_deviation);
+                filter(i-1,j) = 1/(intensity*std_deviation);
             end
             j = j + 1;
         end
